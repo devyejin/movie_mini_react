@@ -7,7 +7,6 @@ const router = createBrowserRouter([
     path: '/',
     element: <BasicLayout />,
     children: [
-      // movie를 잡고 루트도 잡고?
       {
         index: true,
         element: <MainPage />,
