@@ -28,11 +28,11 @@ export default function MovieSection({ children, path }) {
         <ul className="flex flex-row-reverse ">
           {sampleMovies?.map((movie) => {
             const { poster_path, title, id } = movie;
-            // console.log(poster_path);
+            // console.log(id);
             const baseURL = import.meta.env.VITE_IMG_BASE_URL;
             return (
               <li>
-                <MovieCard key={id} img={baseURL + poster_path}>
+                <MovieCard id={id} img={baseURL + poster_path}>
                   {title}
                 </MovieCard>
               </li>

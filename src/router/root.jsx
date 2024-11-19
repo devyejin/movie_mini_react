@@ -3,13 +3,15 @@ import BasicLayout from "../layouts/BasicLayout";
 import MovieLayout from "../layouts/MovieLayout";
 import MovieSamplePage from "../pages/MovieSamplePage";
 import MovieListPage from "../pages/MovieListPage";
+import MovieDetailPage from "../pages/MovieDetailPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <BasicLayout />,
     children: [
       {
-        path: "movie", // 
+        path: "movie", //
         element: <MovieLayout />,
         children: [
           {
@@ -17,13 +19,13 @@ const router = createBrowserRouter([
             element: <MovieSamplePage />,
           },
           {
+            path: ":id", //동적 라우팅, 영화id값 (숫자도 문자로 인식해서 위에)
+            element: <MovieDetailPage />,
+          },
+          {
             path: ":category", // : 이용해서 라우팅 가능 (/movie/top_rated)
             element: <MovieListPage />,
           },
-          // {
-          //   path : ":id", //동적 라우팅, 영화id값
-          //   element : <MovieDetailPage>,
-          // },
         ],
       },
     ],

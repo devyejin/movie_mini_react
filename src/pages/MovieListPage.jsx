@@ -8,6 +8,7 @@ export default function MovieListPage() {
   // http://localhost:5173/popular
   // 카테고리에서 분류를 뽑아내고, 데이터를 찾아내고, 출력
   const { category } = useParams();
+  console.log(category);
   //useState에 데이터 저장
   const [movies, setMovies] = useState([]);
 
@@ -27,6 +28,7 @@ export default function MovieListPage() {
       {movies.map((movie) => {
         const { poster_path, title, id } = movie;
         const baseURL = import.meta.env.VITE_IMG_BASE_URL;
+
         return (
           <ul>
             <MovieCard id={id} img={baseURL + poster_path}>
