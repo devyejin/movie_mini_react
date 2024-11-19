@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import MovieCard from "../components/movie/MovieCard";
-import movieApi from "../api/movieApi";
+import MovieCard from "../../components/movie/MovieCard";
+import movieApi from "../../api/movieApi";
 import { useParams } from "react-router-dom";
 
 //Movie Detail에서는 영화 상세정보를 보여준다.

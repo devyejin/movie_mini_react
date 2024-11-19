@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import movieApi from "../api/movieApi";
-import MovieCard from "../components/movie/MovieCard";
+import movieApi from "../../api/movieApi";
+import MovieCard from "../../components/movie/MovieCard";
 
 export default function MovieListPage() {
   // 카테고리별로 다른 데이터를 출력
