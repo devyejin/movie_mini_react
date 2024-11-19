@@ -1,8 +1,8 @@
-import { RouterProvider } from 'react-router-dom';
-import router from './router/root';
-import './App.css';
-import { Provider } from 'react-redux';
-import store from './store/store';
+import { RouterProvider } from "react-router-dom";
+import router from "./router/root";
+import "./index.css";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   return (

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import MovieCard from './MovieCard';
-import MenuLink from '../common/MenuLink';
-import movieApi from '../../api/movieApi';
+import React, { useEffect, useState } from "react";
+import MovieCard from "./MovieCard";
+import MenuLink from "../common/MenuLink";
+import movieApi from "../../api/movieApi";
 
 export default function MovieSection({ children, path }) {
   console.log(path);
@@ -12,7 +12,7 @@ export default function MovieSection({ children, path }) {
   useEffect(() => {
     async function getSpecificMovies(path) {
       const data = await movieApi.getSpecificMovies(path);
-
+      console.log(data);
       //data 5개 자르기
       const sampleData = data.slice(0, 5);
       setSampleMovies(sampleData);
@@ -24,16 +24,18 @@ export default function MovieSection({ children, path }) {
     <>
       <div>
         <h3>{children}</h3>
-        <MenuLink path={`movie/${path}`}>{'더보기...'}</MenuLink>
-        <ul>
+        <MenuLink path={`movie/${path}`}>{"더보기..."}</MenuLink>
+        <ul className="flex flex-row-reverse ">
           {sampleMovies?.map((movie) => {
             const { poster_path, title, id } = movie;
             console.log(poster_path);
             const baseURL = import.meta.env.VITE_IMG_BASE_URL;
             return (
-              <MovieCard key={id} img={baseURL + poster_path}>
-                {title}
-              </MovieCard>
+              <li>
+                <MovieCard key={id} img={baseURL + poster_path}>
+                  {title}
+                </MovieCard>
+              </li>
             );
           })}
         </ul>
