@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import BasicLayout from "../layouts/BasicLayout";
 import MovieLayout from "../layouts/MovieLayout";
-import MovieSamplePage from "../pages/MovieSamplePage";
-import MovieListPage from "../pages/MovieListPage";
-import MovieDetailPage from "../pages/MovieDetailPage";
+import MovieSamplePage from "../pages/movie/MovieSamplePage";
+import MovieListPage from "../pages/movie/MovieListPage";
+import MovieDetailPage from "../pages/movie/MovieDetailPage";
+import LoginLayout from "../layouts/LoginLayout";
+import LoginPage from "../pages/auth/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +13,12 @@ const router = createBrowserRouter([
     element: <BasicLayout />,
     children: [
       {
-        path: "movie", //
+        // Home Directory에서도 맨 처음에 /movie가 보였으면 해서
+        index: true,
+        element: <MovieSamplePage />,
+      },
+      {
+        path: "movie",
         element: <MovieLayout />,
         children: [
           {
@@ -27,6 +34,16 @@ const router = createBrowserRouter([
             element: <MovieListPage />,
           },
         ],
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <LoginLayout />,
+    children: [
+      {
+        path: "login",
+        element: <LoginPage />,
       },
     ],
   },
