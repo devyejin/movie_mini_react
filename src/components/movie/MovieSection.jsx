@@ -22,20 +22,17 @@ export default function MovieSection({ children, path }) {
 
   return (
     <>
-      <div>
+      <div style={{ width: "80%", margin: "0 auto" }}>
         <h3>{children}</h3>
-        <MenuLink path={`${path}`}>{"더보기..."}</MenuLink>
-        <ul className="flex flex-row-reverse ">
+        <MenuLink path={`/movie/${path}`}>{"더보기..."}</MenuLink>
+        <ul className="flex flex-row flex-wrap justify-between gap-5">
           {sampleMovies?.map((movie) => {
             const { poster_path, title, id } = movie;
-            // console.log(id);
             const baseURL = import.meta.env.VITE_IMG_BASE_URL;
             return (
-              <li>
-                <MovieCard id={id} img={baseURL + poster_path}>
-                  {title}
-                </MovieCard>
-              </li>
+              <MovieCard id={id} img={baseURL + poster_path}>
+                {title}
+              </MovieCard>
             );
           })}
         </ul>

@@ -14,11 +14,11 @@ export default function MovieCard({
   console.log(id);
 
   function handleMovieClick() {
-    navigate(`/movie/${id}`);
+    navigate(`/movie/detail/${id}`);
   }
   return (
     <>
-      <li key={id} onClick={handleMovieClick}>
+      <li key={id} onClick={handleMovieClick} className="">
         <div>
           <img src={img}></img>
           <h6>{children}</h6>

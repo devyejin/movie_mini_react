@@ -5,7 +5,7 @@ export default function MenuLink({ children, path }) {
   // console.log(path, children);
   return (
     <>
-      <div>
+      <div className="font-bold text-3xl border-spacing-2">
         <Link to={path}>{children}</Link>
       </div>
     </>

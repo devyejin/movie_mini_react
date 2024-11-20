@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = [
   {
-    name: 'Top rated',
-    path: 'top_rated',
+    name: "Top rated",
+    path: "top_rated",
   },
   {
-    name: 'Popular',
-    path: 'popular',
+    name: "Popular",
+    path: "popular",
   },
   {
-    name: 'Now Playing',
-    path: 'now_playing',
+    name: "Now Playing",
+    path: "now_playing",
   },
 ];
 
@@ -20,13 +20,10 @@ const initialState = [
 //   likedMovie : {}
 // }
 
-
 const movieCategoriesSlice = createSlice({
-  name: 'movieCategories',
+  name: "movieCategories",
   initialState,
-  reducers: {
-
-  },
+  reducers: {},
 });
 
 export default movieCategoriesSlice.reducer;

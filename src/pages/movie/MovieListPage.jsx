@@ -25,7 +25,7 @@ export default function MovieListPage() {
 
   return (
     <>
-      {movies.map((movie) => {
+      {movies?.map((movie) => {
         const { poster_path, title, id } = movie;
         const baseURL = import.meta.env.VITE_IMG_BASE_URL;
 
