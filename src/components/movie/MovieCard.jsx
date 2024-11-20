@@ -9,7 +9,7 @@ export default function MovieCard({
   id,
   overview,
   vote_average,
-}) {
+}) {g
   const navigate = useNavigate();
   console.log(id);
 

@@ -2,11 +2,13 @@ import React from "react";
 import MenuLink from "./MenuLink";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   // store에서 가져오기
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const dispatcher = useDispatch();
+  const navigate = useNavigate();
 
   const commonButtonClass =
     " text-black px-4 py-2 rounded hover:bg-blue-600 shadow";
@@ -36,6 +38,7 @@ export default function Header() {
           className={commonButtonClass}
           onClick={() => {
             dispatcher(logout());
+            navigate("/");
           }}
         >
           {"로그아웃"}
