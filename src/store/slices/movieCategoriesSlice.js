@@ -15,10 +15,18 @@ const initialState = [
   },
 ];
 
+// const initialState = {
+//   category : [],
+//   likedMovie : {}
+// }
+
+
 const movieCategoriesSlice = createSlice({
   name: 'movieCategories',
   initialState,
-  reducers: {},
+  reducers: {
+
+  },
 });
 
 export default movieCategoriesSlice.reducer;
