@@ -17,10 +17,18 @@ const movieBookMarkSlice = createSlice({
       const { id, details } = action.payload; //데이터 형식의 자유도가 높다보니 고민이됨 제약사항을 걸지 않아도 될까 하는 생각이 들었음
       state[id] = details;
     },
+    //state는 store 현 상태
+    removeMovieBookMark: (state, action) => {
+      //해당 key 값을 찾아서 제거
+      const id = action.payload;
+      console.log(id);
+      delete state[id]; // .id로 삭제해서 안됨, key니까 []로 접근해야 함
+    },
   },
 });
 
-export const { addMovieBookMark } = movieBookMarkSlice.actions;
+export const { addMovieBookMark, removeMovieBookMark } =
+  movieBookMarkSlice.actions;
 export default movieBookMarkSlice.reducer;
 
 // {

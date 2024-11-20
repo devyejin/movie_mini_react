@@ -7,9 +7,10 @@ export default function LoginPage() {
   const dispatch = useDispatch(); //reducer 함수를 사용할 때 이용
   const navigate = useNavigate();
   //로그인 클릭시, 로그인 아닐땐 로그아웃으로
-  function handleLoginClick() {
+  function handleLoginClick(e) {
+    e.preventDefault(); //이걸 빼먹엇 계속 새로고침으로!
     dispatch(login());
-    navigate("/");
+    navigate(-1);
   }
 
   return (
@@ -19,14 +20,14 @@ export default function LoginPage() {
         type="id"
         id="username"
         name="username"
-        class="w-80 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+        className="w-80 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       />
       <label htmlFor="password"></label>
       <input
         type="password"
         id="password"
         name="password"
-        class="w-80 px-4 py-2 border border-gray-300 rounded-lg shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+        className="w-80 px-4 py-2 border border-gray-300 rounded-lg shadow-sm hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
       />
       <input type="submit" value="로그인" onClick={handleLoginClick}></input>
     </form>

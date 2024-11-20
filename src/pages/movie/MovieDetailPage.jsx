@@ -3,7 +3,10 @@ import MovieCard from "../../components/movie/MovieCard";
 import movieApi from "../../api/movieApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addMovieBookMark } from "../../store/slices/movieBookmarkSlice";
+import {
+  addMovieBookMark,
+  removeMovieBookMark,
+} from "../../store/slices/movieBookmarkSlice";
 
 //Movie Detail에서는 영화 상세정보를 보여준다.
 // https://api.themoviedb.org/3/movie/1084736/reviews?api_key=7597ee9dc2d7ad0cf75f546eb381f3be
@@ -13,7 +16,7 @@ export default function MovieDetailPage() {
   const { id } = useParams(); // {id: '238'}
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const bookmarks = useSelector((state) => state.movieBookmark);
+  const bookmarks = useSelector((state) => state.movieBookmark); //이건 변화 반영됨
   console.log(bookmarks);
   const { isAuthenticated } = useSelector((state) => state.auth);
 
@@ -43,25 +46,37 @@ export default function MovieDetailPage() {
   const baseURL = import.meta.env.VITE_IMG_BASE_URL;
   const posterURL = baseURL + poster_path;
 
+  //북마크에 있는 영화인지 확인 후, 맞다면 빨간 하트
+  const isBookmarked = Object.keys(bookmarks).includes(id);
+  console.log(isBookmarked);
+
   //찜을 한다면, bookmarkSlice에 title, poster를 저장
   function handleOnClickBookMark() {
     //로그인 한 경우에만 저장가능하도록
     //로그인 안 한 경우 -> 로그인 페이지로 이동시킨다.
+
     if (!isAuthenticated) {
       alert("로그인 후 사용 가능한 기능입니다.");
       navigate("/auth/login");
     }
-    dispatch(
-      addMovieBookMark({
-        id: id,
-        details: { title, posterURL }, // 단축 프로퍼티
-      })
-    );
-  }
 
-  //북마크에 있는 영화인지 확인 후, 맞다면 빨간 하트
-  const isBookmarked = Object.keys(bookmarks).includes(id);
-  console.log(isBookmarked);
+    // console.log(isBookmarked);
+    //북마크에 저장된 영화라면 빼기
+    if (isBookmarked) {
+      //key값을 보낸다 -> store에서 해당 key값을 제거한다.
+      dispatch(removeMovieBookMark(id));
+    }
+
+    //북마크에 저장된 영화가 아닌데 -> 하트를 클릭 -> 북마크 store에 추가
+    if (!isBookmarked) {
+      dispatch(
+        addMovieBookMark({
+          id: id,
+          details: { title, posterURL }, // 단축 프로퍼티
+        })
+      );
+    }
+  }
 
   return (
     <>
@@ -79,7 +94,8 @@ export default function MovieDetailPage() {
         style={{ width: 200, height: 60, fontSize: 60 }}
         onClick={handleOnClickBookMark}
       >
-        {isBookmarked ? "❤️" : "🤍"}
+        {" "}
+        {isAuthenticated ? (isBookmarked ? "❤️" : "🤍") : "🤍"}
       </button>
       {reviews?.map((review) => {
         const { author, content, created_at } = review;
