@@ -16,23 +16,19 @@ const movieApi = {
   //특정 장르, 평점순으로 가져오기
   getGenreMovies: async (genreId) => {
     const response = await api.get(
-      `/3/discover/movie?with_genres=${genreId}&sort_by=vote_average_date.desc?&language=ko=KR?&` +
+      `/3/discover/movie?with_genres=${genreId}&sort_by=vote_average_date.desc?&` +
         API_KEY
     );
     return response.data;
   },
 
   getSpecificMovies: async (specific) => {
-    const response = await api.get(
-      `/3/movie/${specific}?&language=ko=KR?&` + API_KEY
-    );
+    const response = await api.get(`/3/movie/${specific}?&` + API_KEY);
     return response.data.results;
   },
 
   getMovieDetails: async (movieId) => {
-    const response = await api.get(
-      `/3/movie/${movieId}/reviews?&language=ko=KR?&` + API_KEY
-    );
+    const response = await api.get(`/3/movie/${movieId}/reviews?&` + API_KEY);
     return response.data.results;
   },
 
