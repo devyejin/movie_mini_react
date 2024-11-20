@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "../../components/movie/MovieCard";
 import movieApi from "../../api/movieApi";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMovieBookMark } from "../../store/slices/movieBookmarkSlice";
 
@@ -12,8 +12,10 @@ export default function MovieDetailPage() {
   //막히면 큰 것을 봐라.
   const { id } = useParams(); // {id: '238'}
   const dispatch = useDispatch();
-  const bookmarks = useSelector((state) => state.movieBookMark);
+  const navigate = useNavigate();
+  const bookmarks = useSelector((state) => state.movieBookmark);
   console.log(bookmarks);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   console.log(id);
 
@@ -43,11 +45,12 @@ export default function MovieDetailPage() {
 
   //찜을 한다면, bookmarkSlice에 title, poster를 저장
   function handleOnClickBookMark() {
-    // dispatch(
-    //   addMovieBookMark({
-    //     id: { title, posterURL }, /
-    //   })
-    // );
+    //로그인 한 경우에만 저장가능하도록
+    //로그인 안 한 경우 -> 로그인 페이지로 이동시킨다.
+    if (!isAuthenticated) {
+      alert("로그인 후 사용 가능한 기능입니다.");
+      navigate("/auth/login");
+    }
     dispatch(
       addMovieBookMark({
         id: id,
@@ -55,6 +58,10 @@ export default function MovieDetailPage() {
       })
     );
   }
+
+  //북마크에 있는 영화인지 확인 후, 맞다면 빨간 하트
+  const isBookmarked = Object.keys(bookmarks).includes(id);
+  console.log(isBookmarked);
 
   return (
     <>
@@ -72,7 +79,7 @@ export default function MovieDetailPage() {
         style={{ width: 200, height: 60, fontSize: 60 }}
         onClick={handleOnClickBookMark}
       >
-        🤍
+        {isBookmarked ? "❤️" : "🤍"}
       </button>
       {reviews?.map((review) => {
         const { author, content, created_at } = review;

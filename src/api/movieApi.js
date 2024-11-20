@@ -7,9 +7,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const movieApi = {
   //장르 CODE 가져오기
   getMoviesGenreKey: async () => {
-    const respoonse = await api.get(
-      "/3/genre/movie/list?&language=ko=KR?&" + API_KEY
-    );
+    const respoonse = await api.get("/3/genre/movie/list?&" + API_KEY);
     return respoonse.data;
   },
 
