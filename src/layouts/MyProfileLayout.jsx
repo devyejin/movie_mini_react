@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export default function MyProfileLayout() {
   // 사용자 정보를 가져오고, 뿌려주기
   const { user } = useSelector((state) => state.auth);
-  useSelector((state) => console.log(state)); //어떻게 뽑아낼지 모르겠다면, 상위 객체를 찍어보자
+  // useSelector((state) => console.log(state)); //어떻게 뽑아낼지 모르겠다면, 상위 객체를 찍어보자
   const movieBookmarks = useSelector((state) => state.movieBookmark);
   //데이터가 안나오던 이유가, 딕셔너리 구조인데 map으로 인덱스처럼 돌려서
 

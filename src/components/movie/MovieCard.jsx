@@ -11,7 +11,7 @@ export default function MovieCard({
   vote_average,
 }) {
   const navigate = useNavigate();
-  console.log(id);
+  // console.log(id);
 
   function handleMovieClick() {
     navigate(`/movie/detail/${id}`);

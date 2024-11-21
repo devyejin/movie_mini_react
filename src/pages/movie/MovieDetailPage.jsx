@@ -20,10 +20,10 @@ export default function MovieDetailPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const bookmarks = useSelector((state) => state.movieBookmark); //이건 변화 반영됨
-  console.log(bookmarks);
+  // console.log(bookmarks);
   const { isAuthenticated } = useSelector((state) => state.auth);
 
-  console.log(id);
+  // console.log(id);
 
   const [reviews, setReviews] = useState([]);
   const [movie, setMovie] = useState([]);
@@ -51,7 +51,7 @@ export default function MovieDetailPage() {
 
   //북마크에 있는 영화인지 확인 후, 맞다면 빨간 하트
   const isBookmarked = Object.keys(bookmarks).includes(id);
-  console.log(isBookmarked);
+  // console.log(isBookmarked);
 
   //찜을 한다면, bookmarkSlice에 title, poster를 저장
   function handleOnClickBookMark() {
