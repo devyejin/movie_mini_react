@@ -7,6 +7,9 @@ import {
   addMovieBookMark,
   removeMovieBookMark,
 } from "../../store/slices/movieBookmarkSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as faNotHeart } from "@fortawesome/free-regular-svg-icons";
 
 //Movie Detail에서는 영화 상세정보를 보여준다.
 // https://api.themoviedb.org/3/movie/1084736/reviews?api_key=7597ee9dc2d7ad0cf75f546eb381f3be
@@ -90,12 +93,19 @@ export default function MovieDetailPage() {
       </MovieCard>
       {/* 찜을 하면 마이페이지에 영화를 넣어라 -> store 리덕스 persistence 이용해서 저장해줘야 쿠키나 세션 아이디 저장 가능*/}
       {/* 찜인 상태에서는 빨간 하트, 아닌 경우에는 흰색 하트 */}
-      <button
-        style={{ width: 200, height: 60, fontSize: 60 }}
-        onClick={handleOnClickBookMark}
-      >
-        {" "}
-        {isAuthenticated ? (isBookmarked ? "❤️" : "🤍") : "🤍"}
+      <button onClick={handleOnClickBookMark}>
+        {isAuthenticated ? (
+          isBookmarked ? (
+            <FontAwesomeIcon
+              icon={faHeart}
+              style={{ color: "#f70202", fontSize: "60px" }}
+            />
+          ) : (
+            <FontAwesomeIcon icon={faNotHeart} fontSize={60} />
+          )
+        ) : (
+          <FontAwesomeIcon icon={faNotHeart} fontSize={60} />
+        )}
       </button>
       {reviews?.map((review) => {
         const { author, content, created_at } = review;
