@@ -14,6 +14,7 @@ function App() {
 
   //1. localStorage에서 상태값을 가져오자
   function getIsLoggedIn() {
+    console.log("getIsLoggedIn 함수 호출");
     let storage;
     const key = "isLoggedIn";
 
@@ -27,7 +28,10 @@ function App() {
   const currentState = getIsLoggedIn();
 
   //2. 가져온 상태값을 auth slice에 반영하자
-  // useEffect(() => dispatch(updateAuthState(currentState)), []);
+  useEffect(() => {
+    console.log("auth store에 값 업데이트 호출");
+    dispatch(updateAuthState(currentState));
+  }, [currentState]);
 
   console.log("App 호출");
 

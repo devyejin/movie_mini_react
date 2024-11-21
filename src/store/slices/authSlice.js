@@ -20,24 +20,41 @@ const authSlice = createSlice({
       const newState = { ...state, isAuthenticated: true };
 
       let storage;
+      const key = "isLoggedIn";
 
       try {
         storage = window["localStorage"]; //문자열로 접근해야 함
-        const x = "isLoggedIn";
-        storage.setItem(newState.isAuthenticated);
+        storage.setItem(key, newState.isAuthenticated);
       } catch (error) {
-        console.error("auth storage error ", error);
+        console.error("auth storage login error ", error);
       }
 
       return newState; //새로운 state를 반환해줘야 함!
     },
 
     logout: (state, action) => {
-      state.isAuthenticated = false;
+      const newState = { ...state, isAuthenticated: false }; //immer 라이브러리(redux내부에서) 덕분에 . 으로 바로 변경 가능
+      let storage;
+      const key = "isLoggedIn";
+
+      try {
+        storage = window["localStorage"];
+        storage.removeItem(key);
+      } catch (error) {
+        console.error("auth storage logout error ", error);
+      }
+
+      return newState;
+    },
+
+    updateAuthState: (state, action) => {
+      const newState = action.payload;
+      console.log(newState);
+      state.isAuthenticated = newState; //immer 라이브러리 덕에 새로운 객체로 교체하지 않아도 됨
     },
   },
 });
 //reducer는 export해 줘야 외부에서 사용(setter)
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, updateAuthState } = authSlice.actions;
 export default authSlice.reducer;
