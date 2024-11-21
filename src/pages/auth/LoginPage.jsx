@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function LoginPage() {
   const dispatch = useDispatch(); //reducer 함수를 사용할 때 이용
   const navigate = useNavigate();
+  
   //로그인 클릭시, 로그인 아닐땐 로그아웃으로
   function handleLoginClick(e) {
     e.preventDefault(); //이걸 빼먹엇 계속 새로고침으로!
