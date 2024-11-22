@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import reducer from "./movieGenreSlice";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 const initialState = {
   // 테스트용 데이터
@@ -13,9 +15,12 @@ const movieBookMarkSlice = createSlice({
   initialState,
   reducers: {
     addMovieBookMark: (state, action) => {
-      // console.log(action.payload);
+      //store에 저장
       const { id, details } = action.payload; //데이터 형식의 자유도가 높다보니 고민이됨 제약사항을 걸지 않아도 될까 하는 생각이 들었음
       state[id] = details;
+
+      //localStorage(redix-persist)
+      
     },
     //state는 store 현 상태
     removeMovieBookMark: (state, action) => {
@@ -30,8 +35,3 @@ const movieBookMarkSlice = createSlice({
 export const { addMovieBookMark, removeMovieBookMark } =
   movieBookMarkSlice.actions;
 export default movieBookMarkSlice.reducer;
-
-// {
-//   "323" : {title : 'aadasd', imgURL : 'HTTP~~~~'},
-//   "343 "
-// }

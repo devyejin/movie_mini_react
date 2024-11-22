@@ -32,6 +32,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage, //localStorage사용
+  whitelist: ["movieBookmark"], //localStroage에 저장하겠다.
 };
 
 //persisted reducer 생성
