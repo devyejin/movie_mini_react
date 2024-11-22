@@ -39,7 +39,7 @@ const authSlice = createSlice({
 
       try {
         storage = window["localStorage"];
-        storage.removeItem(key);
+        storage.setItem(key, newState.isAuthenticated);
       } catch (error) {
         console.error("auth storage logout error ", error);
       }
