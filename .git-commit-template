@@ -2,7 +2,7 @@
 # 첫 줄은 요약으로 commit 종류(type)와 설명(Subject)을 작성한다.
 # 한 줄 공백 후 다음 줄에 본문(body)을 작성한다.
 # 이때, 본문은 필요하지 않으면 작성하지 않는다.
-type: Subject
+type: Subject 
 
 body[option]
 
