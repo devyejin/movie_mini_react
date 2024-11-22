@@ -18,11 +18,11 @@ export default function Header() {
       <MenuLink path={"/"} className={commonButtonClass}>
         {"메인페이지"}
       </MenuLink>
-
-      <MenuLink path={"/my"} className={commonButtonClass}>
-        {"마이페이지"}
-      </MenuLink>
-
+      {isAuthenticated && (
+        <MenuLink path={"/my"} className={commonButtonClass}>
+          {"마이페이지"}
+        </MenuLink>
+      )}
       <MenuLink path={"/movies"} className={commonButtonClass}>
         {"영화 상세페이지"}
       </MenuLink>
