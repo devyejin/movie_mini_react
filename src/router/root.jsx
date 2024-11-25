@@ -1,37 +1,31 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import BasicLayout from "../layouts/BasicLayout";
 import MovieLayout from "../layouts/MovieLayout";
-import MovieSamplePage from "../pages/movie/MovieSamplePage";
+import MovieMainPage from "../pages/movie/MovieMainPage";
 import MovieListPage from "../pages/movie/MovieListPage";
 import MovieDetailPage from "../pages/movie/MovieDetailPage";
 import LoginLayout from "../layouts/LoginLayout";
 import LoginPage from "../pages/auth/LoginPage";
 import MyProfileLayout from "../layouts/MyProfileLayout";
-
+import PrivateRouter from "./PrivateRouter";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <BasicLayout />,
     children: [
-      // mypage는 auth랑은 별개임
       {
-        path: "my",
-        element: <MyProfileLayout />,
-        // children :
-      },
-      {
-        // Home Directory에서도 맨 처음에 /movie가 보였으면 해서
         index: true,
-        element: <MovieSamplePage />,
+        element: <MovieMainPage />,
       },
       {
         path: "movie",
-        element: <MovieLayout />,
         children: [
           {
+            // path: "movie",
             index: true,
-            element: <MovieSamplePage />,
+            element: <Navigate to="/" replace />,
           },
+
           {
             path: ":category", // : 이용해서 라우팅 가능 (/movie/top_rated)
             element: <MovieListPage />,
@@ -41,6 +35,17 @@ const router = createBrowserRouter([
             element: <MovieDetailPage />,
           },
         ],
+      },
+      // mypage는 auth랑은 별개임
+      {
+        path: "my",
+        element: (
+          <PrivateRouter>
+            <MyProfileLayout />
+          </PrivateRouter>
+        ),
+        // loader 컴포넌트에 진입하기 전 실행(fetch 등..)
+        // children :
       },
     ],
   },
