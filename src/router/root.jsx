@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import BasicLayout from "../layouts/BasicLayout";
+import BaseLayout from "../layouts/BaseLayout";
 import MovieLayout from "../layouts/MovieLayout";
 import MovieMainPage from "../pages/movie/MovieMainPage";
 import MovieListPage from "../pages/movie/MovieListPage";
@@ -11,7 +11,7 @@ import PrivateRouter from "./PrivateRouter";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <BasicLayout />,
+    element: <BaseLayout />,
     children: [
       {
         index: true,
