@@ -14,15 +14,15 @@ function App() {
 
   //1. localStorage에서 상태값을 가져오자
   function getIsLoggedIn() {
-    console.log("getIsLoggedIn 함수 호출");
-    let storage;
     const key = "isLoggedIn";
+    console.log(typeof localStorage.getItem(key));
 
-    try {
-      storage = window["localStorage"];
-      //해당 key값이 없이 null일 수도 있으니까 예외처리(js는 예외안나서 상관없나?)
-      return storage.getItem(key);
-    } catch (error) {}
+    // try {
+    //   storage = window["localStorage"];
+    //   //해당 key값이 없이 null일 수도 있으니까 예외처리(js는 예외안나서 상관없나?)
+    //   console.log("tt", typeof JSON.parse(storage.getItem(key)));
+    //   return JSON.parse(storage.getItem(key));
+    // } catch (error) {}
   }
 
   const currentState = getIsLoggedIn();

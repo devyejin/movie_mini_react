@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MenuLink from "./MenuLink";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
@@ -6,9 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   // store에서 가져오기
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  console.log(isAuthenticated);
   const dispatcher = useDispatch();
   const navigate = useNavigate();
+
+  // useEffect(()=> {
+
+  // },[isAuthenticated])
 
   const commonButtonClass =
     " text-black px-4 py-2 rounded hover:bg-blue-600 shadow";
@@ -23,10 +28,15 @@ export default function Header() {
           {"마이페이지"}
         </MenuLink>
       )}
-      <MenuLink path={"/movies"} className={commonButtonClass}>
-        {"영화 상세페이지"}
+      <MenuLink path={"/movie/top_rated"} className={commonButtonClass}>
+        {"Top Rated"}
       </MenuLink>
-
+      <MenuLink path={"/movie/popular"} className={commonButtonClass}>
+        {"Popular"}
+      </MenuLink>
+      <MenuLink path={"/movie/now_playing"} className={commonButtonClass}>
+        {"Now Playing"}
+      </MenuLink>
       {/* isAuthenticated가 false이면 로그인 페이지 버튼 보여주기 */}
       {!isAuthenticated && (
         <MenuLink path={"/auth/login"} className={commonButtonClass}>

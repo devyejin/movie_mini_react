@@ -1,4 +1,4 @@
-import MovieSamplePage from "../pages/movie/MovieSamplePage";
+import MovieMainPage from "../pages/movie/MovieMainPage";
 import { Outlet } from "react-router-dom";
 
 export default function MovieLayout() {

@@ -23,6 +23,8 @@ const authSlice = createSlice({
       const key = "isLoggedIn";
 
       try {
+        // localStorage.setItem('key','value') 한 줄 처리 가능
+ 
         storage = window["localStorage"]; //문자열로 접근해야 함
         storage.setItem(key, newState.isAuthenticated);
       } catch (error) {

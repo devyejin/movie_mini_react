@@ -21,22 +21,19 @@ const router = createBrowserRouter([
         path: "movie",
         children: [
           {
-            // path: "movie",
             index: true,
             element: <Navigate to="/" replace />,
           },
-
           {
-            path: ":category", // : 이용해서 라우팅 가능 (/movie/top_rated)
+            path: ":category", // 동적 라우팅
             element: <MovieListPage />,
           },
           {
-            path: "detail/:id", //동적 라우팅, 영화id값 (숫자도 문자로 인식해서 위에)
+            path: "detail/:id", // 영화id값
             element: <MovieDetailPage />,
           },
         ],
       },
-      // mypage는 auth랑은 별개임
       {
         path: "my",
         element: (
@@ -45,7 +42,6 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         // loader 컴포넌트에 진입하기 전 실행(fetch 등..)
-        // children :
       },
     ],
   },

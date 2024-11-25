@@ -31,14 +31,14 @@ export default function MovieDetailPage() {
   useEffect(() => {
     //영화 정보 가져오기
     async function getMovie() {
-      const movie = await movieApi.getMovie(id);
+      const movie = await movieApi.getMovieById(id);
       setMovie(movie);
     }
     getMovie();
 
     //리뷰가져오기
     async function getMovieDetails() {
-      const reviews = await movieApi.getMovieDetails(id);
+      const reviews = await movieApi.getMovieReviewById(id);
       // console.log(reviews);
       setReviews(reviews);
     }

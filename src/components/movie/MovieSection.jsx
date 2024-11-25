@@ -11,7 +11,7 @@ export default function MovieSection({ children, path }) {
   //데이터를 여기서 fetch
   useEffect(() => {
     async function getSpecificMovies(path) {
-      const data = await movieApi.getSpecificMovies(path);
+      const data = await movieApi.getMoviesByCategories(path);
       // console.log(data);
       //data 5개 자르기
       const sampleData = data.slice(0, 5);

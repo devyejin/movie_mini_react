@@ -16,7 +16,7 @@ export default function MovieListPage() {
   //데이터가 변경됐을 수도 있으니까 다시 불러오고 뿌리기
   useEffect(() => {
     async function getMovieLists(category) {
-      const data = await movieApi.getSpecificMovies(category);
+      const data = await movieApi.getMoviesByCategories(category);
       // console.log(data);
       setMovies(data);
     }
