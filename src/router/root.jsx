@@ -8,6 +8,7 @@ import LoginLayout from "../layouts/LoginLayout";
 import LoginPage from "../pages/auth/LoginPage";
 import MyProfileLayout from "../layouts/MyProfileLayout";
 import PrivateRouter from "./PrivateRouter";
+import MovieSearchResultPage from "../pages/movie/MovieSearchResultPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
           {
             path: "detail/:id", // 영화id값
             element: <MovieDetailPage />,
+          },
+          {
+            path: "search",
+            element: <MovieSearchResultPage />,
           },
         ],
       },

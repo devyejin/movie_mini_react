@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MenuLink from "./MenuLink";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/authSlice";
@@ -7,13 +7,28 @@ import { useNavigate } from "react-router-dom";
 export default function Header() {
   // store에서 가져오기
   const { isAuthenticated } = useSelector((state) => state.auth);
-  console.log(isAuthenticated);
+  // console.log(isAuthenticated);
   const dispatcher = useDispatch();
+
   const navigate = useNavigate();
 
-  // useEffect(()=> {
+  const [query, setSearchQuery] = useState("");
 
-  // },[isAuthenticated])
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); //submit 기본 이벤트 방지
+    if (!query.trim().length) {
+      alert("검색어를 입력하세요.");
+    }
+
+    if (query.trim()) {
+      navigate(`/movie/search?query=${encodeURIComponent(query)}`);
+    }
+  };
 
   const commonButtonClass =
     " text-black px-4 py-2 rounded hover:bg-blue-600 shadow";
@@ -54,11 +69,15 @@ export default function Header() {
           {"로그아웃"}
         </button>
       )}
-      <input
-        type="text"
-        placeholder="검색하는용도"
-        className={commonButtonClass}
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="검색하는용도"
+          className={commonButtonClass}
+          onChange={handleChange}
+        />
+        <button type="submit">검색</button>
+      </form>
     </header>
   );
 }
