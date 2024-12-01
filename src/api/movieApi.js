@@ -27,6 +27,16 @@ const movieApi = {
     const response = await api.get(`/3/movie/${movieId}`);
     return response.data;
   },
+
+  //
+  fetchMoviesByQuery: async (query) => {
+    const response = await api.get(`/3/search/movie`, {
+      params: {
+        query,
+      },
+    });
+    return response.data.results;
+  },
 };
 
 export default movieApi;
