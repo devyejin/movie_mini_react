@@ -9,6 +9,7 @@ export default function MovieCard({
   id,
   overview,
   vote_average,
+  release_year,
 }) {
   const navigate = useNavigate();
   // console.log(id);
@@ -18,14 +19,13 @@ export default function MovieCard({
   }
   return (
     <>
-      <li key={id} onClick={handleMovieClick} className="">
-        <div>
-          <img src={img}></img>
-          <h6>{children}</h6>
-          <span>{overview}</span>
-          <span>{vote_average}</span>
-        </div>
-      </li>
+      <div onClick={handleMovieClick}>
+        <img src={img}></img>
+        <h6>{children}</h6>
+        <span>{overview}</span>
+        <span>{vote_average}</span>
+        <span>{release_year}</span>
+      </div>
     </>
   );
 }

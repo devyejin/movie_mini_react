@@ -30,9 +30,11 @@ export default function MovieSection({ children, path }) {
             const { poster_path, title, id } = movie;
             const baseURL = import.meta.env.VITE_IMG_BASE_URL;
             return (
-              <MovieCard id={id} img={baseURL + poster_path}>
-                {title}
-              </MovieCard>
+              <li key={id}>
+                <MovieCard id={id} img={baseURL + poster_path}>
+                  {title}
+                </MovieCard>
+              </li>
             );
           })}
         </ul>
