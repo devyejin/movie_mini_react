@@ -15,18 +15,21 @@ export default function Header() {
   const [query, setSearchQuery] = useState("");
 
   const handleChange = (event) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     setSearchQuery(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault(); //submit 기본 이벤트 방지
+
     if (!query.trim().length) {
       alert("검색어를 입력하세요.");
+      return;
     }
 
     if (query.trim()) {
       navigate(`/movie/search?query=${encodeURIComponent(query)}`);
+      setSearchQuery(""); //input창 비우기
     }
   };
 
@@ -75,6 +78,7 @@ export default function Header() {
           placeholder="검색하는용도"
           className={commonButtonClass}
           onChange={handleChange}
+          value={query}
         />
         <button type="submit">검색</button>
       </form>

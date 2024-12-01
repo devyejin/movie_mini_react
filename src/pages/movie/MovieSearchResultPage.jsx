@@ -15,7 +15,6 @@ export default function MovieSearchResultPage() {
     const fetchData = async () => {
       try {
         const data = await movieApi.fetchMoviesByQuery(query);
-        console.log(data);
         setSearchMovies(data); // 데이터 정상 저장됨
       } catch (error) {
         console.error(error);
@@ -31,21 +30,24 @@ export default function MovieSearchResultPage() {
   const baseURL = import.meta.env.VITE_IMG_BASE_URL;
 
   return (
-    <ul className="movie-list">
-      {searchMovies.map((movie) => {
-        const { id, poster_path, release_date, title } = movie;
+    <>
+      <h3>{query} 검색 결과</h3>
+      <ul className="flex flex-wrap gap-5">
+        {searchMovies.map((movie) => {
+          const { id, poster_path, release_date, title } = movie;
 
-        const posterURL = baseURL + poster_path;
-        const release_year = release_date.split("-")[0];
+          const posterURL = baseURL + poster_path;
+          const release_year = release_date.split("-")[0];
 
-        return (
-          <li key={id}>
-            <MovieCard id={id} img={posterURL} release_year={release_year}>
-              {title}
-            </MovieCard>
-          </li>
-        );
-      })}
-    </ul>
+          return (
+            <li class="w-full sm:w-1/2 md:w-1/3 lg:w-1/5" key={id}>
+              <MovieCard id={id} img={posterURL} release_year={release_year}>
+                {title}
+              </MovieCard>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
