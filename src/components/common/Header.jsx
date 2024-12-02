@@ -76,8 +76,9 @@ export default function Header() {
             {"로그아웃"}
           </button>
         )}
-
-        {/* <form onSubmit={handleSubmit}>
+        {/* 
+        <form onSubmit={handleSubmit}>
+          
           <input
             type="text"
             placeholder="검색하는용도"
