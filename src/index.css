@@ -43,3 +43,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 페이지 콘텐츠는 헤더 높이만큼 아래로 밀어냄 */
+body {
+  margin-top: 60px; /* 헤더 높이에 맞춰 조정 */
+}
+.header {
+  background-color: lightpink;
+  position: fixed;
+  width: 100%;
+  z-index: 1000; /* 다른 요소보다 위에 표시*/
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* header(flex)의 flex-items */
+.top-row {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  float: 0 0 auto;
+}
+
+.search-bar {
+  position: relative;
+  /* flex-grow: 1; */
+}
+
+/* Input 스타일 */
+.search-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 확장창 */
+.search-results {
+  /* position: absolute; */
+  position: fixed;
+  top: 100px; /* Input 바로 아래에 배치 */
+  left: 0;
+  width: 100%;
+  background-color: lightpink;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.search-results ul {
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+}
+
+.search-results li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.search-results li:hover {
+  background-color: #f0f0f0;
+}
