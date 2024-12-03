@@ -8,7 +8,7 @@ export default function MovieListPage() {
   // http://localhost:5173/popular
   // 카테고리에서 분류를 뽑아내고, 데이터를 찾아내고, 출력
   const { category } = useParams();
-  console.log(category);
+  // console.log(category);
   //useState에 데이터 저장
   const [movies, setMovies] = useState([]);
 
@@ -21,22 +21,25 @@ export default function MovieListPage() {
       setMovies(data);
     }
     getMovieLists(category);
-  }, []);
+  }, [movies]);
 
   return (
     <>
-      {movies?.map((movie) => {
-        const { poster_path, title, id } = movie;
-        const baseURL = import.meta.env.VITE_IMG_BASE_URL;
+      <div className="main-container">
+        <h2>{category}</h2>
+        <ul className="movie-list">
+          {movies?.map((movie) => {
+            const { poster_path, title, id } = movie;
+            const baseURL = import.meta.env.VITE_IMG_BASE_URL;
 
-        return (
-          <ul>
-            <MovieCard id={id} img={baseURL + poster_path}>
-              {title}
-            </MovieCard>
-          </ul>
-        );
-      })}
+            return (
+              <MovieCard id={id} img={baseURL + poster_path}>
+                {title}
+              </MovieCard>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 }

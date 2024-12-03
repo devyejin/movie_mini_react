@@ -8,15 +8,17 @@ export default function MovieSamplePage() {
 
   return (
     <>
-      {/* {console.log(movieCategories)} */}
-      {movieCategories.map((category) => {
-        const { name, path } = category;
-        return (
-          <MovieSection path={path} key={name}>
-            {name}
-          </MovieSection>
-        );
-      })}
+      <div className="main-container">
+        {/* {console.log(movieCategories)} */}
+        {movieCategories.map((category) => {
+          const { name, path } = category;
+          return (
+            <MovieSection path={path} key={name}>
+              {name}
+            </MovieSection>
+          );
+        })}
+      </div>
     </>
   );
 }

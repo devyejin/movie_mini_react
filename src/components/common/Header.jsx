@@ -13,27 +13,28 @@ export default function Header() {
 
   const navigate = useNavigate();
 
-  const [isExpanded, setIsExpanded] = useState(false); //검색창 확장 상태
+  // 이동(SearchBar로 이동)
+  // const [isExpanded, setIsExpanded] = useState(false); //검색창 확장 상태
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleChange = (event) => {
-    // console.log(event.target.value);
-    setSearchQuery(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   // console.log(event.target.value);
+  //   setSearchQuery(event.target.value);
+  // };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); //submit 기본 이벤트 방지
+  // const handleSubmit = (event) => {
+  //   event.preventDefault(); //submit 기본 이벤트 방지
 
-    if (!searchQuery.trim().length) {
-      alert("검색어를 입력하세요.");
-      return;
-    }
+  //   if (!searchQuery.trim().length) {
+  //     alert("검색어를 입력하세요.");
+  //     return;
+  //   }
 
-    if (searchQuery.trim()) {
-      navigate(`/movie/search?query=${encodeURIComponent(searchQuery)}`);
-      setSearchQuery(""); //input창 비우기
-    }
-  };
+  //   if (searchQuery.trim()) {
+  //     navigate(`/movie/search?query=${encodeURIComponent(searchQuery)}`);
+  //     setSearchQuery(""); //input창 비우기
+  //   }
+  // };
 
   const commonButtonClass =
     " text-black px-4 py-2 rounded hover:bg-blue-600 shadow";

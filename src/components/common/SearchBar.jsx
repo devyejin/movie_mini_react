@@ -12,18 +12,27 @@ export default function SearchBar() {
 
   const navigate = useNavigate();
 
+  //데이터 정제할 메서드
+
   //검색어 입력창에 변화가 발생하면 검색창 확장
   const handleChange = (event) => {
-    const query = event.target.value.trim();
+    const query = event.target.value.trimStart();
+
     // console.log(query);
+    setSearchQuery(query);
+
     if (query) {
-      setSearchQuery(query);
       setIsExpanded(true); //검색창 확장
-      console.log(isExpanded);
+      // console.log(isExpanded);
     } else {
       setIsExpanded(false);
     }
   };
+
+  function getMovieReleasYear(release_year) {
+    // console.log(release_year.split("-")[0]);
+    // return release_year.split("-")[0];
+  }
 
   //검색어가 변경될 때 마다 데이터를 fetch
   useEffect(() => {
@@ -34,6 +43,7 @@ export default function SearchBar() {
       try {
         const data = await movieApi.fetchMoviesByQuery(searchQuery);
         // console.log(data);
+        // 여기서 state에 set하지 않고 메서드에서 처리
         setSearchMovies(data);
       } catch (error) {
         console.error(error);
@@ -46,6 +56,8 @@ export default function SearchBar() {
   const handleSubmit = (event) => {
     event.preventDefault(); //submit 기본 이벤트 방지
 
+    setIsExpanded(false);
+
     if (!searchQuery.trim().length) {
       alert("검색어를 입력하세요.");
       return;
@@ -57,6 +69,11 @@ export default function SearchBar() {
     }
   };
 
+  const handleClick = (id) => {
+    setIsExpanded(false);
+    navigate(`/movie/detail/${id}`);
+  };
+
   return (
     <>
       <div className="search-bar">
@@ -65,6 +82,7 @@ export default function SearchBar() {
             className="search-input"
             type="search"
             placeholder="검색하는용도"
+            autoComplete="on"
             // className={commonButtonClass}
             onChange={handleChange}
             value={searchQuery}
@@ -74,15 +92,24 @@ export default function SearchBar() {
         </form>
       </div>
       {/* Input창 확장 */}
-      
+
       {isExpanded ? (
         //검색창 확장
-        <div className="search-results">
-          확장되는 창 확인
+        <div
+          className="search-results"
+          onMouseLeave={() => setIsExpanded(false)}
+        >
           <ul>
             {searchMovies.map((movie) => {
-              const { title } = movie;
-              return <li>{title}</li>;
+              //데이터 정제하는 작업은 별도의 함수로 분리(추후)
+              const { title, id, release_date } = movie;
+              const year = release_date.split("-")[0];
+
+              return (
+                <li key={id} onClick={() => handleClick(id)}>
+                  {title} ({year})
+                </li>
+              );
             })}
           </ul>
         </div>

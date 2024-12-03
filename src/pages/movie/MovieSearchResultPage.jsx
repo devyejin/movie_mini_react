@@ -40,7 +40,7 @@ export default function MovieSearchResultPage() {
           const release_year = release_date.split("-")[0];
 
           return (
-            <li class="w-full sm:w-1/2 md:w-1/3 lg:w-1/5" key={id}>
+            <li className="w-full sm:w-1/2 md:w-1/3 lg:w-1/5" key={id}>
               <MovieCard id={id} img={posterURL} release_year={release_year}>
                 {title}
               </MovieCard>

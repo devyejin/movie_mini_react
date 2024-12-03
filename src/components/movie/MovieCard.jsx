@@ -19,13 +19,13 @@ export default function MovieCard({
   }
   return (
     <>
-      <div onClick={handleMovieClick}>
+      <li className="movie-item" key={id} onClick={handleMovieClick}>
         <img src={img}></img>
         <h6>{children}</h6>
         <span>{overview}</span>
         <span>{vote_average}</span>
         <span>{release_year}</span>
-      </div>
+      </li>
     </>
   );
 }
