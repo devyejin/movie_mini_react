@@ -83,14 +83,12 @@ export default function MovieDetailPage() {
 
   return (
     <>
-      <MovieCard
-        img={posterURL}
-        overview={overview}
-        vote_average={vote_average}
-        id={id}
-      >
-        {title}
-      </MovieCard>
+      <div id={id}>
+        <div>{title}</div>
+        <img src={baseURL + posterURL} alt="영화이미지" />
+        <div>{overview}</div>
+        <div>{vote_average}</div>
+      </div>
       {/* 찜을 하면 마이페이지에 영화를 넣어라 -> store 리덕스 persistence 이용해서 저장해줘야 쿠키나 세션 아이디 저장 가능*/}
       {/* 찜인 상태에서는 빨간 하트, 아닌 경우에는 흰색 하트 */}
       <button onClick={handleOnClickBookMark}>
