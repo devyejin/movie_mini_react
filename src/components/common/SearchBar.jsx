@@ -18,12 +18,11 @@ export default function SearchBar() {
   const handleChange = (event) => {
     const query = event.target.value.trimStart();
 
-    // console.log(query);
-    setSearchQuery(query);
+    setSearchQuery(query); //state
 
     if (query) {
       setIsExpanded(true); //검색창 확장
-      // console.log(isExpanded);
+    
     } else {
       setIsExpanded(false);
     }

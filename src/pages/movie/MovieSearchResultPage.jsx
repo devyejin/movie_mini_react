@@ -5,6 +5,7 @@ import MovieCard from "../../components/movie/MovieCard";
 
 //1차코드) 1page 데이터만 호출
 export default function MovieSearchResultPage() {
+  
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
 
@@ -25,13 +26,16 @@ export default function MovieSearchResultPage() {
     }
   }, [query]); //query가 바뀔 때 마다 API 요청
 
+  //최근 검색어 저장
+  localStorage.setItem
+
   //검색 결과 랜더링
 
   const baseURL = import.meta.env.VITE_IMG_BASE_URL;
 
   return (
     <>
-      <h3>{query} 검색 결과</h3>
+      <h1 className="search-keyword">{query} 검색 결과</h1>
       <ul className="flex flex-wrap gap-5">
         {searchMovies.map((movie) => {
           const { id, poster_path, release_date, title } = movie;

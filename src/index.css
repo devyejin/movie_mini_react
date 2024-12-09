@@ -138,3 +138,8 @@
 .search-results li:hover {
   background-color: #f0f0f0;
 }
+
+.search-keyword {
+  font-size: large;
+  font-weight: bold;
+}
